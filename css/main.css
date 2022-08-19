@@ -7,7 +7,7 @@ html {
 }
 
 .main-container{
-    height: 100vh;
+    height: 100%;
 }
 
 ::-moz-selection {
@@ -79,7 +79,7 @@ body {
 
 
 .footer-container{
-    
+    position: sticky;
     bottom: 0;
     width: 100%;
 }
