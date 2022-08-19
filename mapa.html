@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocalización con Google Maps</title>
+
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=true"></script>
+    <script>
+        var map;
+
+        function localizame(){
+            var opcionesMapa = {
+                    zoom: 9
+            };
+
+            map = new google.maps.Map(document.getElementById('miMapa'), opcionesMapa);
+
+            if (navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(function(position){
+                    var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+                    new google.maps.InfoWindow({
+                        map:map,
+                        position:pos,
+                        content: 'Te hemos encontrado por aqui'
+                    });
+
+                    map.setCenter(pos);
+                }, function(){
+                    document.getElementById("sistema").innerHTML = "El navegador no soporta HTML5";
+                });
+            }
+        }
+
+
+        google.maps.event.addDomListener(window, 'load', localizame);
+
+
+    </script>
+</head>
+<body>
+    <div id="miMapa"></div>
+</body>
+</html>
