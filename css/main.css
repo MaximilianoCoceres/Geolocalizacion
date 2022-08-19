@@ -6,6 +6,10 @@ html {
     line-height: 1.4;
 }
 
+.main-container{
+    height: 100vh;
+}
+
 ::-moz-selection {
     background: #b3d4fc;
     text-shadow: none;
@@ -80,7 +84,6 @@ body {
 
 .footer-container{
     
-    position: fixed;
     bottom: 0;
     width: 100%;
 }
@@ -110,6 +113,11 @@ nav ul {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+nav ul li{
+    margin-right: 1em;
+    width: 100%;
 }
 
 nav a {
@@ -207,6 +215,10 @@ nav a:hover {
         margin: 0 1.7%;
         padding: 25px 2%;
         margin-bottom: 0;
+    }
+
+    nav ul li{
+        margin-right: 1em;
     }
 
     nav li:first-child a {
