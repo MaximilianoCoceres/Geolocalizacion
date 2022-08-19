@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Geolocalizacion con Google Maps</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+    #map {height: 350px;}
+    </style>
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+    <script>
+    if (navigator.geolocation) { 
+      navigator.geolocation.getCurrentPosition(function (position) {                                                              
+     var latitud = position.coords.latitude;                    
+     var longitud = position.coords.longitude;                 
+     var pos = new google.maps.LatLng(latitud, longitud); 
+     var directionsService = new google.maps.DirectionsService();
+     var directionsDisplay = new google.maps.DirectionsRenderer();
+     var mapOptions = 
+     {
+       zoom: 9,  
+       center: pos, 
+       mapTypeControl: true, 
+       navigationControlOptions:
+       {
+         style: google.maps.NavigationControlStyle.SMALL 
+       },
+       mapTypeId: google.maps.MapTypeId.ROADMAP //Variantes:ROADMAP, SATELLITE, HYBRID, TERRIAN
+     };
+
+     map = new google.maps.Map(document.getElementById("map"), mapOptions);
+     directionsDisplay.setMap(map);
+     directionsDisplay.setPanel(document.getElementById('panel'));
+     var request = {
+       origin: pos,
+       destination: 'Colmenar Viejo',
+       travelMode: google.maps.DirectionsTravelMode.DRIVING
+     };
+
+     directionsService.route(request, function (response, status) {
+       if (status == google.maps.DirectionsStatus.OK) {
+         directionsDisplay.setDirections(response);
+       }
+     });
+   });
+ }
+
+
+    </script>
+  </head>
+  <body>
+    <div class="header-container">
+        <header class="wrapper clearfix">
+            <h1 class="title">Geolocalización Html5</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Posicion</a></li>
+                    <li><a href="index3.html">Mapa</a></li>
+                    <li><a href="index2.html">Seguidor</a></li>
+                    <li><a href="#">Ej 4</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    <div id="map"></div>
+      <div id="panel"></div>
+
+      <div class="footer-container">
+        <footer class="wrapper">
+            <h3>footer</h3>
+        </footer>
+    </div>
+  </body>
+</html>
+
